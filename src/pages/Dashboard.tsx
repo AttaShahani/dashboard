@@ -1,0 +1,57 @@
+import { BsSearch } from "react-icons/bs"
+import AdminSidebar from "../components/AdminSidebar"
+import { FaRegBell } from "react-icons/fa"
+import userImg from "../assets/user.png"
+import { HiTrendingDown, HiTrendingUp } from "react-icons/hi"
+const Dashboard = () => {
+  return (
+    <div className="adminContainer">
+      <AdminSidebar/>
+      <main className="dashboard">
+      <div className="bar">
+        <BsSearch/>
+        <input type="text" placeholder="Search Here" />
+        <FaRegBell/>
+        <img src={userImg} alt="user" />
+      </div>
+      <section className="widgetContainer">
+        <WidgetItem heading="Users" percent={-25} amount={false} value={458} color="rgb(0 151 255)" />
+        <WidgetItem heading="Orders" percent={-89} amount={false} value={456875} color="rgb(137 152 171)" />
+        <WidgetItem heading="Revenue" percent={72} amount={true} value={4546875} color="rgb(227,133,182)" />
+      </section>
+      </main>
+    </div>
+  )
+}
+interface WidgetItemProps {
+  heading : string;
+  value : number;
+  percent: number
+  color: string
+  amount?: boolean
+}
+const WidgetItem = ({heading,value,percent,color,amount}:WidgetItemProps)=>(
+  <article className="widget">
+    <div className="widgetInfo">
+      <p>{heading}</p>
+      <h4>{amount?`$${value}`:value}</h4>
+      { percent>0 ? ( 
+        <span className="green">
+          <HiTrendingUp/> + {percent}%
+        </span> ) : ( 
+          <span className="red">
+            <HiTrendingDown/>  {percent}%
+          </span> ) }
+    </div>
+    <div className="widgetCircle"
+    style={{
+      background: `conic-gradient(${color} ${Math.abs(percent)/100*360}deg, rgb(255,255,255) 0)`
+      // `conic-gradient(red 360}deg, rgb(255,255,255) 0)`
+    }}
+    >
+      <span style={{color}}>{percent}%  </span>
+    </div>
+           
+  </article>
+)
+export default Dashboard
