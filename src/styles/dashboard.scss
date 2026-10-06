@@ -1,65 +1,122 @@
 @use "mixins" as *;
 .dashboard {
-    overflow-y: auto;
-    .bar {
-        height: 4rem;
-        padding: 0 1rem;
-        border-bottom: 1px solid rgba($color: #000000, $alpha:0.37);
-        @include flex(row,unset);
-        > input {
-            margin-right: auto;
-            @include inputStyle(100%, 1rem 0)
+  overflow-y: auto;
+  .bar {
+    height: 4rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.37);
+    @include flex(row, unset);
+    > input {
+      margin-right: auto;
+      @include inputStyle(100%, 1rem 0);
+    }
+    > svg {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+    > img {
+      @include sqr(2rem);
+      border-radius: 50%;
+    }
+  }
+  .widgetContainer {
+    @include flex(row, space-between, stretch, 2rem);
+    padding: 2rem 2rem 2rem 0;
+    .widget {
+      width: 16rem;
+      background-color: white;
+      box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.132);
+      padding: 2rem;
+      @include flex(row, space-between, stretch, 0);
+      border-radius: 10px;
+      .widgetInfo {
+        > p {
+          opacity: 0.7;
+          font-size: 0.8rem;
         }
-        > svg {
-            font-size: 1.2rem;
-            opacity: 0.7;
+        > h4 {
+          font-size: 1.5rem;
         }
-        > img {
-            @include sqr(2rem);
-            border-radius: 50%;
+        > span {
+          @include flex(row, unset, center, 0.2rem);
+        }
+      }
+      .widgetCircle {
+        position: relative;
+        @include sqr(5rem);
+        border-radius: 50%;
+        flex: none;
+        display: grid;
+        place-items: center;
+        background-color: fuchsia;
+        &::before {
+          content: "";
+          position: absolute;
+          @include sqr(4rem);
+          background-color: white;
+          border-radius: 100%;
+        }
+        > span {
+          position: relative;
+        }
+      }
+    }
+  }
+  .graphContainer {
+    @include flex(row, unset, unset, 2rem);
+    padding: 0 2rem 2rem 0;
+    div {
+      background-color: white;
+      border-radius: 10px;
+    }
+    .revenueChart{
+        width: 100%;
+        padding: 1rem 3rem;
+        > h2{
+            @include heading;
+            margin: 1rem 0 2rem 0.25rem;
+            text-align: center;
         }
     }
-    .widgetContainer{
-        @include flex(row, space-between, stretch,2rem);
-        padding: 2rem 2rem 2rem 0;
-        .widget{
-            width: 16rem;
-            background-color: white;
-            box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.132);
-            padding: 2rem;
-            @include flex(row, space-between, stretch,0);
-            border-radius: 10px;
-            .widgetInfo{
-                > p{
-                    opacity: 0.7;
-                    font-size: 0.8rem;
-                }
-                > h4{
-                    font-size: 1.5rem;
-                }
-                > span {
-                    @include flex(row,unset,center,0.2rem)
-                }
+    .dashboardCategories{
+        width: 100%;
+        max-width: 16rem;
+        @include flex(column, center, unset,0);
+        padding-bottom: 2rem;
+        >h2{
+            @include heading;
+            margin: 1.5rem 0 2rem 0;
+            text-align: center;
+        }
+        > div {
+            overflow-y: auto;
+padding-left: 0.5rem;
+        }
+        .categoryItem {
+            width: 100%;
+            @include flex(row, space-between);
+            padding: 1rem;
+            > h5 {
+                letter-spacing: 1px;
+                font-weight: 300;
             }
-            .widgetCircle {
-                position: relative;
-                @include sqr(5rem);
-                border-radius: 50%;
+            > div {
+                margin-left: auto;
+                width: 6rem;
+                background-color: rgb(217 217 217);
+                border-radius: 20px;
+                height: 0.5rem;
                 flex: none;
-                display: grid;
-                place-items: center;
-                background-color: fuchsia;
-                &::before{
-                    content: "";
-                    position: absolute;
-                    @include sqr(4rem);
-                    background-color: white;
-                    border-radius: 100%;
+                > div {
+                    border-radius: 20px;
+                    height: 100%;
                 }
-                > span {
-                    position: relative;
-                }
+            }
+            > span {
+                font-size: 0.8rem;
+                font-weight: 700;
             }
         }
     }
+  }
 }
